@@ -1,0 +1,24 @@
+.navbar {
+  top:3%;
+  margin-bottom: 8%;
+}
+.logo {
+  background-color: #25d482;
+  margin: 0 3%;
+  padding: 1% 5%;
+  position: absolute;
+  border-radius: 25px;
+  height: 86px;
+  color: #fff;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #00994e;
+  height: min-content;
+}
+
+.navbar-nav {
+  margin-left: 25%;
+}
+.nav-item {
+  margin: 0 1rem;
+}
