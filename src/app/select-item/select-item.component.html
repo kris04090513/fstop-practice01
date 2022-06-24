@@ -1,0 +1,7 @@
+<!-- <button type="button" class="btn btn-light">{{title}}</button> -->
+<div class="select-item d-flex justify-content-between" (click)="eyeChange()">
+    <p class="select-item-text ">{{title}}</p>
+    <i *ngIf="eyeOpen.close" class="fa-regular fa-eye-slash"></i>
+    <i *ngIf="eyeOpen.open" class="fa-regular fa-eye"></i>
+
+</div>

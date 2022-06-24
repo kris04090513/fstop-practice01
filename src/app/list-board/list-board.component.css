@@ -1,0 +1,28 @@
+.session2 {
+  background: #fff;
+  border: 3px solid #ffc107;
+  border-radius: 25px 0px;
+}
+.sub {
+  padding: 0px 20px;
+}
+
+.sub-text {
+  margin: 20px 5px;
+}
+
+.sub-3-img {
+  padding: 0px 20px;
+  border-left: 1px solid #c4c4c4;
+}
+
+.btn07 {
+  background-color: #25d482;
+  color: #fff;
+  border-radius: 20px;
+}
+.btn14 {
+  background-color: #d8dbdd;
+  color: #929da9;
+  border-radius: 20px;
+}

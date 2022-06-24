@@ -1,0 +1,9 @@
+.select-title {
+  margin: 5% 0;
+}
+.select-item-text {
+  margin-bottom: 0;
+  /* word-wrap: none; */
+  width: 200px;
+  border-radius:15px ;
+}

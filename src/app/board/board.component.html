@@ -1,0 +1,36 @@
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-8">
+            <div class="selections d-flex justify-content-between">
+                <!-- <app-select-item *ngFor="let d of boardItem" [title]="d" data-value="d"></app-select-item> -->
+                <!-- <app-select-item data-value="臺幣" data-money="123,122" [title]="title1" (click)="subChange($event)">
+                </app-select-item> -->
+                <select class="select-item-text " #select id="select" (change)="subChange($event)">
+                    <option value={{i}} *ngFor="let count of taiwanAccounts,let i = index">{{count}}</option>
+                </select>
+                <app-select-item data-value="外幣" data-money="22,100" [title]="title2" (click)="subChange($event)">
+                </app-select-item>
+                <app-select-item data-value="數位" data-money="550,122" [title]="title3" (click)="subChange($event)">
+                </app-select-item>
+
+            </div>
+            <div class="select-title text-light d-flex justify-content-between ">
+                <h2>{{boardSub}}資產總額: </h2>
+                <h2 (click)="eyeChange()">
+                    <i *ngIf="eyeOpen.open" class="fa-regular fa-eye"></i>
+                    <i *ngIf="eyeOpen.close" class="fa-regular fa-eye-slash"></i>
+                </h2>
+            </div>
+            <div *ngIf="this.eyeOpen.open" class="select-amount text-light d-flex justify-content-end">
+                <h3 class="my-auto">${{amount}}</h3>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="credit-card">
+                <img src="assets/image/card.png" alt="">
+            </div>
+        </div>
+    </div>
+
+
+</div>
