@@ -1,0 +1,15 @@
+.chart-desc {
+  display: flex;
+  margin: 10% 0;
+}
+
+.rect {
+  width: 20px;
+  height: 20px;
+  background-color: navy;
+  margin: 1%;
+}
+.chart-text {
+  display: flex;
+  align-items: center;
+}

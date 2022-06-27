@@ -17,11 +17,13 @@ export class ListBoardComponent implements OnInit {
 
   get: any;
   datalist: { date: string, detail: string, money: number }[] = []; //帳戶明細
-  dataAll: { date: string, detail: string, money: number }[] = [];
+  dataAll: { date: string, detail: string, money: number }[] = []; // 接收資料存放的的放
   // datalist =  { date: 'string', detail: 'string', money: 1 }; //帳戶明細
   // date: string = "2022/01/05";
   // detail: string = "手續費狒狒"
   // money: number = 0;
+  chartTitle = ['近14天收支', '近14天轉入金額', '近14天轉出金額', '近14天利息'];
+  chartColor = ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'];
   constructor(private http: HttpClient) { }
 
 
@@ -44,14 +46,14 @@ export class ListBoardComponent implements OnInit {
 
 
 
-  filterChange(v: any) {
+  filterChange(v: number) {
     this.dataAll = this.datalist;
-    console.log(v.currentTarget.dataset.value);
-    const value = v.currentTarget.dataset.value
+    // console.log(v.currentTarget.dataset.value);
+    // const value = v.currentTarget.dataset.value
     const today = new Date();
     console.log('this.datalist', this.datalist);
     // console.log(today)
-    const filterDate = new Date(today.setDate(today.getDate() - Number(value)));
+    const filterDate = new Date(today.setDate(today.getDate() - Number(v)));
     console.log("-7777888", filterDate);
     const filterDataList = this.dataAll.filter(datalist => { return new Date(datalist.date) > filterDate })
     console.log('-777', filterDataList);

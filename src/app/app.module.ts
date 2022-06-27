@@ -9,6 +9,7 @@ import { SelectItemComponent } from './select-item/select-item.component';
 import { ListBoardComponent } from './list-board/list-board.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChartItemComponent } from './chart-item/chart-item.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SelectItemComponent,
     ListBoardComponent,
     ListItemComponent,
+    ChartItemComponent,
 
 
   ],
