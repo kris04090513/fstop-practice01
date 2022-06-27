@@ -59,15 +59,15 @@ export class BoardComponent implements OnInit {
     console.log("countSelect", accountSelect);
     this.amount = this.twCount[accountSelect];
     // 換卡面
-    if (accountSelect === 0) {
+    if (accountSelect === '0') {
       this.cardShow.card01 = true;
       this.cardShow.card02 = false;
     }
 
-    if (accountSelect === 1) {
+    if (accountSelect === '1') {
       this.cardShow.card01 = true;
       this.cardShow.card02 = false;
-    } else if (accountSelect === 2) {
+    } else if (accountSelect === '2') {
       this.cardShow.card01 = false;
       this.cardShow.card02 = true;
     }
