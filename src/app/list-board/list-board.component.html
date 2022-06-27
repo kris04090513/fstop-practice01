@@ -13,10 +13,10 @@
             </div>
 
             <div class="sub-2 d-flex flex-row">
-                <h6 class="mx-3">日期</h6>
-                <h6 class="mx-3">摘要 / 金額</h6>
+                <h6 class="mx-5">日期</h6>
+                <h6 class="mx-5">摘要 / 金額</h6>
             </div>
-            <app-list-item></app-list-item>
+            <app-list-item *ngFor="let d of datalist" [datalist]=d></app-list-item>
         </div>
         <div class="col-4  my-5">
             <div class="sub-3-img">
