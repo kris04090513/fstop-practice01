@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./chart-item.component.css']
 })
 export class ChartItemComponent implements OnInit {
-  @Input() chartTitle = "近14天收支123"
+  @Input() chartItem = { title: '', bgc: '' }
   constructor() { }
 
   ngOnInit(): void {

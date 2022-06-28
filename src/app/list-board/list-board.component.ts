@@ -22,8 +22,18 @@ export class ListBoardComponent implements OnInit {
   // date: string = "2022/01/05";
   // detail: string = "手續費狒狒"
   // money: number = 0;
-  chartTitle = ['近14天收支', '近14天轉入金額', '近14天轉出金額', '近14天利息'];
-  chartColor = ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'];
+  chartItem = [{ title: '近14天收支', bgc: '#F78EBD' },
+    { title: '近14天轉入金額', bgc: '#9197F2' },
+    { title: '近14天轉出金額', bgc: '#FEC133' },
+    { title: '近14天利息', bgc: '#8EFB99' }];
+  
+    // chartItem = {
+  //   [title: '近14天收支', bgc: '#F78EBD'] ,
+  //   [title: '近14天轉入金額', bgc: '#9197F2' ],
+  //   [title: '近14天轉出金額', bgc: '#FEC133'] ,
+  //   [title: '近14天利息', bgc: '#8EFB99' ]
+  // };
+  // chartColor = ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'];
   constructor(private http: HttpClient) { }
 
 
