@@ -18,18 +18,10 @@ export class ListItemComponent implements OnInit {
   @Input() datalist= { date: '', detail: '', money: 0 }; //帳戶明細
 
 
-  // constructor(private http: HttpClient) { }
+  constructor() { }
 
 
   ngOnInit(): void {
-
-    // let url = 'assets/data/list-data.json'
-    // let getDataAPI = (): Observable<listArr> => {
-    //   return this.http.get<listArr>(url)
-    // }
-    // getDataAPI().subscribe(data => {
-    //   console.log(data)
-    // })
 
 
   }

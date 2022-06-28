@@ -4,7 +4,7 @@
         <div class="sub-3-left-desc mx-3 ">{{datalist.detail}}</div>
     </div>
     <div class="sub-3-right d-flex justify-content-end">
-        <div class="sub-3-right-price mx-3">{{datalist.money}}</div>
+        <div class="sub-3-right-price mx-3">{{datalist.money | currency:'':'symbol':'0.0-0'}}</div>
         <div class="sub-3-right-arrow mx-3"><i class="fas fa-angle-down"></i></div>
     </div>
 </div>

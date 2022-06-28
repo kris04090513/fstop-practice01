@@ -5,14 +5,15 @@
                 <!-- <app-select-item *ngFor="let d of boardItem" [title]="d" data-value="d"></app-select-item> -->
                 <!-- <app-select-item data-value="臺幣" data-money="123,122" [title]="title1" (click)="subChange($event)">
                 </app-select-item> -->
-                <select class="select-item w-25" #select id="select" (change)="accountChange($event)">
-                    <option value={{i}} *ngFor="let count of taiwanAccounts,let i = index">{{count}}</option>
+                <select class="select-item w-25" #select id="select" data-value="臺幣"
+                    (change)="subChange($event,0);accountChange($event)">
+                    <option value={{i}} *ngFor="let acc of twAccMoney;let i = index">{{twAccMoney[i].titleAcc}}</option>
                 </select>
                 <app-select-item class="w-25" data-value="外幣" data-money="22,100" [title]="title2"
-                    (click)="subChange($event)">
+                    (click)="subChange($event,1)">
                 </app-select-item>
                 <app-select-item class="w-25" data-value="數位" data-money="550,122" [title]="title3"
-                    (click)="subChange($event)">
+                    (click)="subChange($event,2)">
                 </app-select-item>
 
             </div>
@@ -24,13 +25,13 @@
                 </h2>
             </div>
             <div *ngIf="this.eyeOpen.open" class="select-amount text-light d-flex justify-content-end">
-                <h3 class="my-auto">${{amount}}</h3>
+                <h3 class="my-auto">{{amount | currency:'':'symbol':'0.0-0'}}</h3>
             </div>
         </div>
         <div class="col-12 col-md-4">
             <div class="credit-card">
-                <img *ngIf="cardShow.card01" src="assets/image/card1.png" alt="">
-                <img *ngIf="cardShow.card02" src="assets/image/card2.png" alt="">
+                <img src="assets/image/{{this.cardShow}}" alt="">
+                <!-- <img *ngIf="cardShow.card02" src="assets/image/card2.png" alt=""> -->
             </div>
         </div>
     </div>
