@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { filter, from, fromEvent, map, Observable, of } from 'rxjs';
-
+import { ItemService } from '../item.service';
 export interface listArr {
   date: string,
   detail: string,
@@ -24,13 +24,20 @@ export class ListBoardComponent implements OnInit {
   // detail: string = "手續費狒狒"
   // money: number = 0;
   chartItem = [{ title: '近14天收支', bgc: '#F78EBD' },
-    { title: '近14天轉入金額', bgc: '#9197F2' },
-    { title: '近14天轉出金額', bgc: '#FEC133' },
-    { title: '近14天利息', bgc: '#8EFB99' }];
-  
+  { title: '近14天轉入金額', bgc: '#9197F2' },
+  { title: '近14天轉出金額', bgc: '#FEC133' },
+  { title: '近14天利息', bgc: '#8EFB99' }];
+
   constructor(private http: HttpClient) { }
-  
+  // private itemService: ItemService;
+  // constructor(itemService: ItemService) {
+  //   this.itemService = itemService;
+  // }
+
+
   ngOnInit(): void {
+    // let getItem = this.itemService.getListBoardItem(); // 從item service 去呼叫要傳入的資料
+    // console.log('getItem', getItem);
     // 去取得json 資料
     let url = 'assets/data/list-data.json'
     let getDataAPI = (): Observable<any> => {

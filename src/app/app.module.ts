@@ -10,6 +10,7 @@ import { ListBoardComponent } from './list-board/list-board.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChartItemComponent } from './chart-item/chart-item.component';
+import { ItemService } from './item.service';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { ChartItemComponent } from './chart-item/chart-item.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

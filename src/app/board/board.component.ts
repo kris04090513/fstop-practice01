@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ItemService } from '../item.service';
 
-export interface accArr {
+export interface twAccMoneyI {
   titleAcc: string,
-  twCount: string,
-  card: number
+  twCount: number,
+  card: string
 }
 
 @Component({
@@ -17,39 +18,46 @@ export class BoardComponent implements OnInit {
   title1: string = '臺幣帳戶';
   title2: string = '外幣帳戶';
   title3: string = '數位帳戶';
-
   eyeOpen = { open: true, close: false }; // 眼睛icon開關
-  amount: string = '22450';
+  amount: number = 22450;
+  boardSub: string = '台幣'; // 資產總計的初始直
+  cardShow: string = 'card1.png'; // 顯示不同卡片
+  twAccMoney!: Array<twAccMoneyI>; // 臺幣帳戶使用 interFace 從item.service 將資料放入
+  @ViewChild('select') select!: ElementRef; // 抓出input 欄位的選項
   // boardSub: string[] = ["臺幣", "外幣", "數位"]
-  taiwanAccounts: string[] = [
-    '臺幣帳戶',
-    '1234-0000-0000-1253',
-    '1234-1111-1111-1111',
-    '1234-2222-2222-2222',
-    '1234-3333-3333-3333',
-    '1234-4444-4444-4444',
-    '1234-5555-5555-5555',
-    '1234-6666-6666-6666',
-  ]; // 下拉選單選擇對應帳戶
-  @ViewChild('select') select!: ElementRef;
+  // taiwanAccounts: string[] = [
+  //   '臺幣帳戶',
+  //   '1234-0000-0000-1253',
+  //   '1234-1111-1111-1111',
+  //   '1234-2222-2222-2222',
+  //   '1234-3333-3333-3333',
+  //   '1234-4444-4444-4444',
+  //   '1234-5555-5555-5555',
+  //   '1234-6666-6666-6666',
+  // ]; // 下拉選單選擇對應帳戶
+
   // twCount: string[] = ["120,111", "123,002", "555,222","122,223","321,111","552,002","112,002","123,456"];// 下拉選單對應帳戶的＄＄對應
-  boardSub: string = '台幣';
+  // cardShow = { card01: true, card02: false }; // 顯示不同卡片開關
+  // twAccMoney: any = [
+  //   { titleAcc: '臺幣帳戶', twCount: 120111123, card: 'card1.png' },
+  //   { titleAcc: '1234-0000-0000-1001', twCount: 120111, card: 'card1.png' },
+  //   { titleAcc: '1234-2222-2222-0002', twCount: 120222, card: 'card2.png' },
+  //   { titleAcc: '1234-3333-3333-0003', twCount: 120333, card: 'card3.png' },
+  //   { titleAcc: '1234-4444-4444-0004', twCount: 120444, card: 'card4.png' },
+  //   { titleAcc: '1234-5555-5555-0005', twCount: 120555, card: 'card5.png' },
+  //   { titleAcc: '1234-6666-6666-0006', twCount: 120666, card: 'card6.png' },
+  //   { titleAcc: '1234-7777-7777-0007', twCount: 120777, card: 'card7.png' },
+  // ];
 
-  twAccMoney: any = [
-    { titleAcc: '臺幣帳戶', twCount: 120111123, card: 'card1.png' },
-    { titleAcc: '1234-0000-0000-1001', twCount: 120111, card: 'card1.png' },
-    { titleAcc: '1234-2222-2222-0002', twCount: 120222, card: 'card2.png' },
-    { titleAcc: '1234-3333-3333-0003', twCount: 120333, card: 'card3.png' },
-    { titleAcc: '1234-4444-4444-0004', twCount: 120444, card: 'card4.png' },
-    { titleAcc: '1234-5555-5555-0005', twCount: 120555, card: 'card5.png' },
-    { titleAcc: '1234-6666-6666-0006', twCount: 120666, card: 'card6.png' },
-    { titleAcc: '1234-7777-7777-0007', twCount: 120777, card: 'card7.png' },
-  ];
-
-  cardShow = { card01: true, card02: false }; // 顯示不同卡片開關
-  constructor() { }
+  private itemService: ItemService;
+  constructor(itemService: ItemService) {
+    this.itemService = itemService;
+  }
 
   ngOnInit(): void {
+    let getItemAcc = this.itemService.getBoardItem(); // 從item service 去呼叫要傳入的資料
+    console.log('------X', getItemAcc);
+    this.twAccMoney = getItemAcc;
 
   }
   // 帳戶金額隱藏/顯示
@@ -58,7 +66,7 @@ export class BoardComponent implements OnInit {
     if (this.eyeOpen.open) {
       this.eyeOpen.open = !this.eyeOpen.open;
       this.eyeOpen.close = !this.eyeOpen.close;
-      this.amount = '-';
+      this.amount = 0;
     } else if (this.eyeOpen.close) {
       this.eyeOpen.open = !this.eyeOpen.open;
       this.eyeOpen.close = !this.eyeOpen.close;
@@ -67,32 +75,25 @@ export class BoardComponent implements OnInit {
   }
   //換選擇的帳戶 台幣/外幣/數位
   subChange(v: any, index: number): void {
+    this.boardSub = this.boardItem[index];
     // data-set 寫法
     // console.log(v.currentTarget.dataset.value);
     // this.boardSub = v.currentTarget.dataset.value;
     // this.amount = v.currentTarget.dataset.money;
-
-    this.boardSub = this.boardItem[index];
     // console.log(index)
     // console.log(this.boardSub)
   }
 
   accountChange(v: any): void {
-    // let i = this.twCount.length;
-    // console.log("length",i)
-
     const accountSelect = this.select.nativeElement.value; // 去找到點到的是第幾個select 的選項
-    console.log("123", this.twAccMoney[accountSelect].titleAcc)
-    console.log('countSelect', accountSelect);
+    // console.log("123", this.twAccMoney[accountSelect].titleAcc)
+    // console.log('countSelect', accountSelect);
     this.amount = this.twAccMoney[accountSelect].twCount;
-    console.log('twCount', this.amount);
+    // console.log('twCount', this.amount);
 
     this.cardShow = this.twAccMoney[accountSelect].card;
-    console.log(" this.cardShow", this.cardShow);
+    // console.log(" this.cardShow", this.cardShow);
 
-    // if (accountSelect === this.twAccMoney[accountSelect]) {
-
-    // }
 
     // 換卡面
     // if (accountSelect === '0') {
