@@ -28,28 +28,31 @@ export class ListBoardComponent implements OnInit {
   { title: '近14天轉出金額', bgc: '#FEC133' },
   { title: '近14天利息', bgc: '#8EFB99' }];
 
-  constructor(private http: HttpClient) { }
-  // private itemService: ItemService;
-  // constructor(itemService: ItemService) {
-  //   this.itemService = itemService;
-  // }
+  // constructor(private http: HttpClient) { }
+  private itemService: ItemService;
+  constructor(itemService: ItemService) {
+    this.itemService = itemService;
+  }
 
 
   ngOnInit(): void {
-    // let getItem = this.itemService.getListBoardItem(); // 從item service 去呼叫要傳入的資料
-    // console.log('getItem', getItem);
-    // 去取得json 資料
-    let url = 'assets/data/list-data.json'
-    let getDataAPI = (): Observable<any> => {
-      return this.http.get<any>(url)
-    }
+    let getItem = this.itemService.getListBoardItem(); // 從item service 去呼叫要傳入的資料
+    console.log('getItem', getItem);
+    
+    getItem.subscribe(data => { console.log(data)})
 
-    getDataAPI().subscribe(data => {
-      console.log(data); // 取出資料Arr
-      console.log("34 datalist", this.datalist) // 空陣列
-      this.datalist = data; // 將資料塞回空陣列中
-      // this.filterChange;
-    });
+
+    // 去取得json 資料
+    // let url = 'assets/data/list-data.json'
+    // let getDataAPI = (): Observable<any> => {
+    //   return this.http.get<any>(url)
+    // }
+
+    // getDataAPI().subscribe(data => {
+    //   console.log(data); // 取出資料Arr
+    //   console.log("34 datalist", this.datalist) // 空陣列
+    //   this.datalist = data; // 將資料塞回空陣列中
+    // });
 
   }
 

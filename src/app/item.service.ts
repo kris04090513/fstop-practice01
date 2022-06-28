@@ -1,16 +1,31 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry, timeout } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
-  constructor() {
-  }
+  constructor(private http: HttpClient) { }
 
-  get<T>(url: string): Observable<any> {
-    throw new Error('Method not implemented.');
+  get<T>(path: string) {
+    let header = new HttpHeaders();
+    // let token = localStorage.getItem('token')
+    // header = header.append('Authorization', token!)
+    header = header.append('Authorization', localStorage.getItem('token')!);
+    return this.http.get<T>(path, { headers: header })
+      .pipe(
+        retry(1),
+        timeout(60000),
+        catchError(this.handleError)
+      );
+  }
+  handleError(error: HttpErrorResponse | any) {
+    console.log('handleError');
+    console.log(error);
+    return throwError(error);
   }
 
 
@@ -28,17 +43,16 @@ export class ItemService {
   }
 
   getListBoardItem() {
-    let url = 'assets/data/list-data.json'
-    let getDataAPI = (): Observable<any> => {
-      return this.get<any>(url)
-    }
+    // let url = 'assets/data/list-data.json'
+    // let getDataAPI = (): Observable<any> => {
+    //   return this.http.get<any>(url)
+    // }
 
-    getDataAPI().subscribe(data => {
-      console.log(data); // 取出資料Arr
-      return data
-
-    });
-
+    // getDataAPI().subscribe(data => {
+    //   console.log(data); // 取出資料Arr
+    //   return data
+    // });
+    return this.http.get('assets/data/list-data.json')
 
   }
 
