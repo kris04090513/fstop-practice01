@@ -22,3 +22,13 @@
 .nav-item {
   margin: 0 1rem;
 }
+
+.nav-item:hover::before {
+  content: "";
+  margin: 0 1rem;
+  /* width: fit-content; */
+  height: 2px;
+  position: absolute;
+  background-color: black;
+  top: 80%;
+}

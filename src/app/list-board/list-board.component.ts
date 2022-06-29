@@ -21,7 +21,9 @@ export class ListBoardComponent implements OnInit {
   datalist: { date: string; detail: string; money: number }[] = []; //帳戶明細
   dataAll: { date: string; detail: string; money: number }[] = []; // 接收資料存放的的放
   dataItem: any; // 接收清單資料  一定要用any 因為傳回來的是observable 是物件不是陣列
-  chartItem!: Array<chartItemI>;  // 接收chart項目資料 傳回來的為陣列
+  chartItem!: Array<chartItemI>; // 接收chart項目資料 傳回來的為陣列
+  day7:number=7;
+  day14:number=14;
   // datalist =  { date: 'string', detail: 'string', money: 1 }; //帳戶明細
   // chartColor = ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'];
   // date: string = "2022/01/05";
@@ -31,7 +33,6 @@ export class ListBoardComponent implements OnInit {
   // { title: '近14天轉入金額', bgc: '#9197F2' },
   // { title: '近14天轉出金額', bgc: '#FEC133' },
   // { title: '近14天利息', bgc: '#8EFB99' }];
- 
 
   // constructor(private http: HttpClient) { }
   private itemService: ItemService;
@@ -45,11 +46,12 @@ export class ListBoardComponent implements OnInit {
       this.dataItem = x;
       console.log('------X', x);
       console.log('------this.dataItem', this.dataItem);
-
+      this.datalist = this.dataItem;
+      console.log('123', this.datalist);
     });
 
     // 從itemService  接出chart子項目
-    let getChartItemData = this.itemService.getChartItem();
+    let getChartItemData = this.itemService.getChartItem(30);
     console.log('getChartItem', getChartItemData);
     this.chartItem = getChartItemData;
 
@@ -67,11 +69,17 @@ export class ListBoardComponent implements OnInit {
 
   // 拿到資料後再做篩選的動作
   filterChange(v: number) {
+    let getChartItemData = this.itemService.getChartItem(v);
+    console.log('getChartItem', getChartItemData);
+    this.chartItem = getChartItemData;
+
     this.dataAll = this.dataItem;
     // console.log(v.currentTarget.dataset.value);
     // const value = v.currentTarget.dataset.value
+    // this.datalist = this.dataAll;
     const today = new Date();
-    // console.log('this.datalist', this.dataItem);
+    console.log('this.datalist', this.datalist);
+    console.log('this.dataItem', this.dataItem);
     // console.log(today)
     const filterDate = new Date(today.setDate(today.getDate() - Number(v)));
     // console.log("-7777888", filterDate);
@@ -81,6 +89,6 @@ export class ListBoardComponent implements OnInit {
     });
     console.log('-777', filterDataList);
 
-    this.dataAll = filterDataList;
+    this.datalist = filterDataList;
   }
 }

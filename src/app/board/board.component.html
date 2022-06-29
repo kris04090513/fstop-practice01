@@ -5,19 +5,20 @@
                 <!-- <app-select-item *ngFor="let d of boardItem" [title]="d" data-value="d"></app-select-item> -->
                 <!-- <app-select-item data-value="臺幣" data-money="123,122" [title]="title1" (click)="subChange($event)">
                 </app-select-item> -->
-                <select class="select-item w-25" #select id="select" data-value="臺幣"
+                <select class="select-item w-25 select-focus" #select id="select" data-value="臺幣"
                     (change)="subChange($event,0);accountChange($event)">
-                    <option value={{i}} *ngFor="let acc of twAccMoney;let i = index">{{twAccMoney[i].titleAcc}}</option>
+                    <option class="select-focus" value={{i}} *ngFor="let acc of twAccMoney;let i = index">
+                        {{twAccMoney[i].titleAcc}}</option>
                 </select>
-                <app-select-item class="w-25" data-value="外幣" data-money="22,100" [title]="title2"
+                <app-select-item class="select-focus2 w-25 select-focus" data-value="外幣" data-money="22,100" [title]="title2"
                     (click)="subChange($event,1)">
                 </app-select-item>
-                <app-select-item class="w-25" data-value="數位" data-money="550,122" [title]="title3"
+                <app-select-item class="select-focus2 w-25 " data-value="數位" data-money="550,122" [title]="title3"
                     (click)="subChange($event,2)">
                 </app-select-item>
 
             </div>
-           
+
             <div class="select-title text-light d-flex justify-content-between ">
                 <h2>{{boardSub}}資產總額: </h2>
                 <h2 (click)="eyeChange()">
@@ -26,7 +27,7 @@
                 </h2>
             </div>
             <div *ngIf="this.eyeOpen.open" class="select-amount text-light d-flex justify-content-end">
-                <h3 class="my-auto">{{amount | currency:'':'symbol':'0.0-0'}}</h3>
+                <h3 class="my-auto">{{this.amount | currency:'':'symbol':'0.0-0'}}</h3>
             </div>
         </div>
         <div class="col-12 col-md-4">

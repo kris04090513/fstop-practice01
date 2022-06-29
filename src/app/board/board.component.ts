@@ -2,9 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../item.service';
 
 export interface twAccMoneyI {
-  titleAcc: string,
-  twCount: number,
-  card: string
+  titleAcc: string;
+  twCount: number;
+  card: string;
 }
 
 @Component({
@@ -12,14 +12,14 @@ export interface twAccMoneyI {
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css'],
 })
-
 export class BoardComponent implements OnInit {
   boardItem: string[] = ['臺幣帳戶', '外幣帳戶', '數位帳戶']; // ngFor
+  boardAmount: number[] = [10123, 123321, 25885];
   title1: string = '臺幣帳戶';
   title2: string = '外幣帳戶';
   title3: string = '數位帳戶';
   eyeOpen = { open: true, close: false }; // 眼睛icon開關
-  amount: number = 22450;
+  amount: number = 922450;
   boardSub: string = '台幣'; // 資產總計的初始直
   cardShow: string = 'card1.png'; // 顯示不同卡片
   twAccMoney!: Array<twAccMoneyI>; // 臺幣帳戶使用 interFace 從item.service 將資料放入
@@ -58,7 +58,6 @@ export class BoardComponent implements OnInit {
     let getItemAcc = this.itemService.getBoardItem(); // 從item service 去呼叫要傳入的資料
     console.log('------X', getItemAcc);
     this.twAccMoney = getItemAcc;
-
   }
   // 帳戶金額隱藏/顯示
   eyeChange(): void {
@@ -76,6 +75,7 @@ export class BoardComponent implements OnInit {
   //換選擇的帳戶 台幣/外幣/數位
   subChange(v: any, index: number): void {
     this.boardSub = this.boardItem[index];
+    this.amount = this.boardAmount[index];
     // data-set 寫法
     // console.log(v.currentTarget.dataset.value);
     // this.boardSub = v.currentTarget.dataset.value;
@@ -93,7 +93,6 @@ export class BoardComponent implements OnInit {
 
     this.cardShow = this.twAccMoney[accountSelect].card;
     // console.log(" this.cardShow", this.cardShow);
-
 
     // 換卡面
     // if (accountSelect === '0') {

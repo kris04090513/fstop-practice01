@@ -13,8 +13,8 @@
                         <input type="checkbox" checked />
                         <a></a>
                         <span>
-                            <span (click)="filterChange(7)" class="left-span">近 7 天</span>
-                            <span (click)="filterChange(14)" class="right-span">近 14 天</span>
+                            <span (click)="filterChange(7)" class="left-span">近 {{day7}} 天</span>
+                            <span (click)="filterChange(14)" class="right-span">近 {{day14}} 天</span>
                         </span>
                     </label>
                 </div>
@@ -24,15 +24,14 @@
                 <h6 class="mx-5">日期</h6>
                 <h6 class="mx-5">摘要 / 金額</h6>
             </div>
-            <app-list-item *ngFor="let d of dataAll" [datalist]=d></app-list-item>
+            <app-list-item *ngFor="let d of datalist" [datalist]=d></app-list-item>
         </div>
         <div class="col-12 col-md-4  my-5">
             <div class="sub-3-img">
                 <img src="assets/image/chart.png" alt="chart">
             </div>
             <div class="cart-items">
-                <app-chart-item *ngFor="let i of chartItem" [chartItem]=i
-                   ></app-chart-item>
+                <app-chart-item *ngFor="let i of chartItem" [chartItem]=i></app-chart-item>
             </div>
         </div>
     </div>
