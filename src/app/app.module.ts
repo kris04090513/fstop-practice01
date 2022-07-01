@@ -11,7 +11,9 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChartItemComponent } from './chart-item/chart-item.component';
 import { ItemService } from './item.service';
-
+import { NgChartsModule } from 'ng2-charts';
+import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.component';
+import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +24,16 @@ import { ItemService } from './item.service';
     ListBoardComponent,
     ListItemComponent,
     ChartItemComponent,
-
-
+    MyDoughnutChartComponent,
+    MyBarChartComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgChartsModule,
   ],
   providers: [ItemService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
