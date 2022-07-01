@@ -13,7 +13,6 @@ import { ChartItemComponent } from './chart-item/chart-item.component';
 import { ItemService } from './item.service';
 import { NgChartsModule } from 'ng2-charts';
 import { MyDoughnutChartComponent } from './my-doughnut-chart/my-doughnut-chart.component';
-import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { MyBarChartComponent } from './my-bar-chart/my-bar-chart.component';
     ListItemComponent,
     ChartItemComponent,
     MyDoughnutChartComponent,
-    MyBarChartComponent,
   ],
   imports: [
     BrowserModule,
