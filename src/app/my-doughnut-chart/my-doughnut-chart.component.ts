@@ -19,8 +19,11 @@ export class MyDoughnutChartComponent implements OnInit {
     datasets: [
       {
         data: [350, 450, 100, 300],
-        
+
         backgroundColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
+        hoverBackgroundColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
+        borderColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
+        hoverBorderColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
       },
       // { data: [50, 150, 120] },
       // { data: [250, 130, 70] },
