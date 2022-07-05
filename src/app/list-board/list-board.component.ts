@@ -111,9 +111,9 @@ export class ListBoardComponent implements OnInit {
     this.chartData = this.datalist;
     // console.log('CHARTLIST', this.datalist);
     console.log('CHARTDATA', this.chartData);
-    // 手續費
+    //  薪資存
     const chartA = this.chartData.filter((chartData) => {
-      return chartData.detail === '手續費';
+      return chartData.detail === '薪資存';
     }).length;
     console.log('chartA', chartA);
 
@@ -123,15 +123,15 @@ export class ListBoardComponent implements OnInit {
     }).length;
     console.log('chartB', chartB);
 
-    // 利息
+    //轉出
     const chartC = this.chartData.filter((chartData) => {
-      return chartData.detail === '利息';
+      return chartData.money < 0 && chartData.detail === '手續費';
     }).length;
     console.log('chartC', chartC);
 
-    // 薪資存
+    // 利息
     const chartD = this.chartData.filter((chartData) => {
-      return chartData.detail === '薪資存';
+      return chartData.detail === '利息';
     }).length;
     console.log('chartD', chartD);
 
