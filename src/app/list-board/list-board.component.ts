@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { ArrayType } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { filter, from, fromEvent, map, Observable, of } from 'rxjs';
 import { ItemService } from '../item.service';
@@ -22,8 +23,13 @@ export class ListBoardComponent implements OnInit {
   dataAll: { date: string; detail: string; money: number }[] = []; // 接收資料存放的的放
   dataItem: any; // 接收清單資料  一定要用any 因為傳回來的是observable 是物件不是陣列
   chartItem!: Array<chartItemI>; // 接收chart項目資料 傳回來的為陣列
-  day7:number=7;
-  day14:number=14;
+  day7: number = 7;
+  day14: number = 14;
+  chartData: { date: string; detail: string; money: number }[] = [];
+  chartDataAll: any;
+  chartDays: number[] = [];
+  chart7: number[] = [25, 35, 10, 50];
+  chart14: number[] = [50, 80, 70, 100];
   // datalist =  { date: 'string', detail: 'string', money: 1 }; //帳戶明細
   // chartColor = ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'];
   // date: string = "2022/01/05";
@@ -44,10 +50,11 @@ export class ListBoardComponent implements OnInit {
     // 從itemService 接出清單資料
     this.itemService.getListBoardItem().subscribe((x) => {
       this.dataItem = x;
-      console.log('------X', x);
-      console.log('------this.dataItem', this.dataItem);
+      // console.log('------X', x);
+      // console.log('------this.dataItem', this.dataItem);
       this.datalist = this.dataItem;
-      console.log('123', this.datalist);
+      // console.log('123', this.datalist);
+      // this.chartFilter();
     });
 
     // 從itemService  接出chart子項目
@@ -78,8 +85,8 @@ export class ListBoardComponent implements OnInit {
     // const value = v.currentTarget.dataset.value
     // this.datalist = this.dataAll;
     const today = new Date();
-    console.log('this.datalist', this.datalist);
-    console.log('this.dataItem', this.dataItem);
+    // console.log('this.datalist', this.datalist);
+    // console.log('this.dataItem', this.dataItem);
     // console.log(today)
     const filterDate = new Date(today.setDate(today.getDate() - Number(v)));
     // console.log("-7777888", filterDate);
@@ -90,5 +97,25 @@ export class ListBoardComponent implements OnInit {
     console.log('-777', filterDataList);
 
     this.datalist = filterDataList;
+    if (v === 7) {
+      this.chartDays = [25, 35, 10, 50];
+      console.log('chartDays0007', this.chartDays);
+    } else {
+      this.chartDays = [50, 80, 70, 100];
+      console.log('chartDays14', this.chartDays);
+    }
   }
+
+  // chartFilter() {
+  //   this.chartData = this.datalist;
+  //   console.log('CHARTLIST', this.datalist);
+  //   console.log('CHARTDATA', this.chartData);
+  //   const chartDatalist = this.chartData.filter((chartData) => {
+  //     return chartData.money > 1000;
+  //   }).length;
+  //   console.log('>1000', chartDatalist);
+  //   console.log('>1000', chartDatalist);
+  //   this.chartDataAll = chartDatalist;
+  //   console.log('chartDATAALL', this.chartDataAll);
+  // }
 }

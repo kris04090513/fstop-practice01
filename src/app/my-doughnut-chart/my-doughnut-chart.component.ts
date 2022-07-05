@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
 
 @Component({
@@ -7,6 +7,11 @@ import { ChartData, ChartEvent, ChartType } from 'chart.js';
   styleUrls: ['./my-doughnut-chart.component.css'],
 })
 export class MyDoughnutChartComponent implements OnInit {
+  get: any;
+  @Input() chartDataAll = { date: '', detail: '', money: 0 }; //帳戶明細
+  moneyData: number = 0;
+  // @Input() chart7: number[] = [];
+  @Input() chartDays: number[] = [100,100,100,100];
   // Doughnut
   // public doughnutChartLabels: string[] = [
   //   '近14',
@@ -18,7 +23,8 @@ export class MyDoughnutChartComponent implements OnInit {
     // labels: this.doughnutChartLabels,
     datasets: [
       {
-        data: [350, 450, 100, 300],
+        // data:[25, 35, 10, 50],
+        data: this.chartDays,
 
         backgroundColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
         hoverBackgroundColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
@@ -52,7 +58,22 @@ export class MyDoughnutChartComponent implements OnInit {
     console.log(event, active);
   }
 
-  constructor() {}
+  constructor() {
+    // console.log('data--------------chartDatalist', this.chartData);
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('data--------------chartDatalist', this.chartDataAll);
+    console.log(this.chartDays);
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    const data = {
+      datasets: [
+        // { data: [350, 450, 100, 250] }
+        { data: changes['chartDays'].currentValue }
+      ],
+     
+    };
+    this.doughnutChartData = data;
+  }
 }

@@ -27,7 +27,10 @@
             <app-list-item *ngFor="let d of datalist" [datalist]=d></app-list-item>
         </div>
         <div class="col-12 col-md-4  my-5">
-            <app-my-doughnut-chart></app-my-doughnut-chart>
+
+            <!-- <app-my-doughnut-chart  *ngFor="let d of chartDataAll" [chartDataAll]=d></app-my-doughnut-chart> -->
+            <app-my-doughnut-chart [chartDays]=chartDays [chartDataAll]=chartDataAll>
+            </app-my-doughnut-chart>
             <div class="sub-3-img">
                 <!-- <img src="assets/image/chart.png" alt="chart"> -->
             </div>
