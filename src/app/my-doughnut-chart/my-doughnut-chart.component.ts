@@ -11,7 +11,7 @@ export class MyDoughnutChartComponent implements OnInit {
   @Input() chartDataAll = { date: '', detail: '', money: 0 }; //帳戶明細
   moneyData: number = 0;
   // @Input() chart7: number[] = [];
-  @Input() chartDays: number[] = [100,100,100,100];
+  @Input() chartDays: number[] = [100, 100, 100, 100];
   // Doughnut
   // public doughnutChartLabels: string[] = [
   //   '近14',
@@ -70,9 +70,14 @@ export class MyDoughnutChartComponent implements OnInit {
     const data = {
       datasets: [
         // { data: [350, 450, 100, 250] }
-        { data: changes['chartDays'].currentValue }
+        {
+          data: changes['chartDays'].currentValue,
+          backgroundColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
+          hoverBackgroundColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
+          borderColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
+          hoverBorderColor: ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'],
+        },
       ],
-     
     };
     this.doughnutChartData = data;
   }

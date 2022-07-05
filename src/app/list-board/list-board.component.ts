@@ -27,9 +27,8 @@ export class ListBoardComponent implements OnInit {
   day14: number = 14;
   chartData: { date: string; detail: string; money: number }[] = [];
   chartDataAll: any;
-  chartDays: number[] = [];
-  chart7: number[] = [25, 35, 10, 50];
-  chart14: number[] = [50, 80, 70, 100];
+  chartDays: number[] = [150, 200, 150, 200]; // 寫死方式傳給chart 接陣列資料用
+  A: number = 0;
   // datalist =  { date: 'string', detail: 'string', money: 1 }; //帳戶明細
   // chartColor = ['#F78EBD', '#9197F2', '#FEC133', '#8EFB99'];
   // date: string = "2022/01/05";
@@ -97,25 +96,50 @@ export class ListBoardComponent implements OnInit {
     console.log('-777', filterDataList);
 
     this.datalist = filterDataList;
-    if (v === 7) {
-      this.chartDays = [25, 35, 10, 50];
-      console.log('chartDays0007', this.chartDays);
-    } else {
-      this.chartDays = [50, 80, 70, 100];
-      console.log('chartDays14', this.chartDays);
-    }
+    this.chartFilter(v);
+    this.chartDays = this.chartDataAll;
+    // if (v === 7) {
+    //   this.chartDays =[20,30,25,50];
+    //   // console.log('chartDays0007', this.chartDays);
+    // } else {
+    //   this.chartDays =[50,80,88,150];
+    //   // console.log('chartDays14', this.chartDays);
+    // }
   }
 
-  // chartFilter() {
-  //   this.chartData = this.datalist;
-  //   console.log('CHARTLIST', this.datalist);
-  //   console.log('CHARTDATA', this.chartData);
-  //   const chartDatalist = this.chartData.filter((chartData) => {
-  //     return chartData.money > 1000;
-  //   }).length;
-  //   console.log('>1000', chartDatalist);
-  //   console.log('>1000', chartDatalist);
-  //   this.chartDataAll = chartDatalist;
-  //   console.log('chartDATAALL', this.chartDataAll);
-  // }
+  chartFilter(v: number) {
+    this.chartData = this.datalist;
+    // console.log('CHARTLIST', this.datalist);
+    console.log('CHARTDATA', this.chartData);
+    // 手續費
+    const chartA = this.chartData.filter((chartData) => {
+      return chartData.detail === '手續費';
+    }).length;
+    console.log('chartA', chartA);
+
+    // 轉入
+    const chartB = this.chartData.filter((chartData) => {
+      return chartData.money >= +0;
+    }).length;
+    console.log('chartB', chartB);
+
+    // 利息
+    const chartC = this.chartData.filter((chartData) => {
+      return chartData.detail === '利息';
+    }).length;
+    console.log('chartC', chartC);
+
+    // 薪資存
+    const chartD = this.chartData.filter((chartData) => {
+      return chartData.detail === '薪資存';
+    }).length;
+    console.log('chartD', chartD);
+
+    this.chartDataAll = [chartA, chartB, chartC, chartD];
+    console.log(' this.chartDataAll HOHOH', this.chartDataAll);
+    // const chartDatalistA = this.chartData.filter((chartData) => {}).length;
+    // console.log('>1000', chartDatalistA);
+    // this.chartDataAll = chartDatalistA;
+    // console.log('chartDATAALL', this.chartDataAll);
+  }
 }
