@@ -1,5 +1,5 @@
 # Practice01
-
+作業練習1 angular 有使用Chart
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
 
 ## Development server

@@ -136,7 +136,7 @@ export class ListBoardComponent implements OnInit {
     console.log('chartD', chartD);
 
     this.chartDataAll = [chartA, chartB, chartC, chartD];
-    console.log(' this.chartDataAll HOHOH', this.chartDataAll);
+    console.log(' this.chartDataAll HOHOHO', this.chartDataAll);
     // const chartDatalistA = this.chartData.filter((chartData) => {}).length;
     // console.log('>1000', chartDatalistA);
     // this.chartDataAll = chartDatalistA;
